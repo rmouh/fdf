@@ -6,7 +6,7 @@
 #    By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/24 18:05:45 by rmouhoub          #+#    #+#              #
-#    Updated: 2023/02/24 18:21:47 by rmouhoub         ###   ########.fr        #
+#    Updated: 2023/03/11 17:50:46 by rmouhoub         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,11 @@ DIR_SRCS		=	srcs/mandatory
 DIR_OBJS		=	objs
 
 DIR_TEST		=	test
+DIR_PARSING		=	parsing
 
 SRCS_NAMES 		= 	$(DIR_TEST)/test.c \
+					$(DIR_PARSING)/parsing.c \
+					
 
 OBJS_NAMES		=	${SRCS_NAMES:.c=.o}
 
@@ -48,6 +51,8 @@ $(DIR_OBJS)/%.o: $(DIR_SRCS)/%.c | $(DIR_OBJS)
 $(DIR_OBJS):
 	mkdir -p $(DIR_OBJS)
 	mkdir -p objs/test
+	mkdir -p objs/parsing
+
 
 
 clean			:

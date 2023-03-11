@@ -1,18 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/19 18:33:11 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/03/11 18:32:18 by rmouhoub         ###   ########.fr       */
+/*   Created: 2022/11/19 12:25:19 by rmouhoub          #+#    #+#             */
+/*   Updated: 2023/03/11 18:31:49 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include<stdio.h> 
-#include <fcntl.h> 
+#include "get_next_line_bonus.h"
 
 char	*get_line(char *str)
 {
@@ -35,7 +33,7 @@ char	*get_line(char *str)
 	}
 	if (str[i] == '\n')
 	{
-		line[i] = str[i];
+		line[i] = '\n';
 		i++;
 	}
 	line[i] = '\0';
@@ -62,12 +60,10 @@ char	*reading(int fd, char *reading_buf, char *stock)
 	readed = 1;
 	while (readed > 0 && !reached_eol(stock))
 	{
-		readed = read(fd, reading_buf, BUFFER_SIZE);
+		readed = read (fd, reading_buf, BUFFER_SIZE);
 		if (readed < 0)
-		{
 			return (NULL);
-		}
-		reading_buf [readed] = '\0';
+		reading_buf[readed] = '\0';
 		stock = ft_strjoin2(stock, reading_buf);
 	}
 	return (stock);
@@ -80,11 +76,12 @@ char	*get_after_line(char *str)
 	char	*buf;
 
 	i = 0;
+	j = 0;
 	while (str[i] && str[i] != '\n')
 		i++;
 	if (!str[i])
 	{
-		free (str);
+		free(str);
 		str = NULL;
 		return (NULL);
 	}
@@ -92,49 +89,47 @@ char	*get_after_line(char *str)
 	if (!buf)
 		return (NULL);
 	i++;
-	j = 0;
 	while (str[i])
 		buf[j++] = str[i++];
 	buf[j] = '\0';
-	free (str);
+	free(str);
 	return (buf);
 }
 
 char	*get_next_line(int fd)
 {
-	char		*reading_buf;
+	static char	*stock[1024];
 	char		*line;
-	static char	*stock;
+	char		*reading_buff;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	reading_buf = malloc (sizeof(char) * (BUFFER_SIZE + 1));
-	if (!reading_buf)
+	reading_buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!reading_buff)
 		return (NULL);
-	stock = reading(fd, reading_buf, stock);
-	if (stock == NULL)
+	stock[fd] = reading(fd, reading_buff, stock[fd]);
+	if (stock[fd] == NULL)
 	{
-		free(stock);
-		free(reading_buf);
+		free(stock[fd]);
+		free(reading_buff);
 		return (NULL);
 	}
-	line = get_line(stock);
-	stock = get_after_line(stock);
-	free(reading_buf);
+	line = get_line(stock[fd]);
+	stock[fd] = get_after_line(stock[fd]);
+	free (reading_buff);
 	return (line);
 }
-
 // #include <stdio.h>
 // #include <fcntl.h>
 
 // int main (int argc, char *argv[])
 // {
 // 	(void )argc;
-// 	(void )argv;
+// 	//(void )argv;
 
 // 	char *buf;
-// 	//int fd = open (argv[1], O_RDONLY);
-// 	while ((buf = get_next_line(0)))
+// 	int fd = open (argv[1], O_RDONLY);
+// 	while ((buf = get_next_line(fd)))
 // 	{
 // 		printf("%s", buf);
 // 		free(buf);	

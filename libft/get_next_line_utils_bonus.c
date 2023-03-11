@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/19 12:27:37 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/03/11 18:32:10 by rmouhoub         ###   ########.fr       */
+/*   Created: 2022/11/19 12:27:49 by rmouhoub          #+#    #+#             */
+/*   Updated: 2023/03/11 18:32:00 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 size_t	ft_strlen(const char *s)
 {
@@ -72,21 +72,3 @@ char	*ft_strjoin2(char *s1, char *s2)
 	free(s1);
 	return (str);
 }
-
-// char	*ft_strdup(const char *s)
-// {
-// 	int		i;
-// 	char	*s_dup;
-
-// 	i = 0;
-// 	s_dup = (char *)malloc (sizeof (char) * (ft_strlen(s) + 1));
-// 	if (!s_dup)
-// 		return (NULL);
-// 	while (s[i])
-// 	{
-// 		s_dup [i] = s[i];
-// 		i++;
-// 	}
-// 	s_dup[i] = '\0';
-// 	return (s_dup);
-// }

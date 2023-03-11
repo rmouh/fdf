@@ -1,22 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_beforlast.c                                     :+:      :+:    :+:   */
+/*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/07 17:14:37 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/02/16 14:12:55 by rmouhoub         ###   ########.fr       */
+/*   Created: 2023/03/11 16:53:34 by rmouhoub          #+#    #+#             */
+/*   Updated: 2023/03/11 18:01:34 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef FDF_H
+# define FDF_H
 
-t_list	*ft_beforlast(t_list *lst)
-{
-	if (!lst)
-		return (0);
-	while (lst->next->next != NULL)
-		lst = lst->next;
-	return (lst);
-}
+# include "../mlx/mlx/mlx.h"
+#include<stdio.h> 
+#include <fcntl.h> 
+
+typedef struct s_data {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;
+
+typedef struct s_point {
+	int	x;
+	int	y;
+	int	z;
+	int	color;
+	int	new_x;
+	int	new_y;
+}				t_point;
+
+#endif

@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcontain.c                                    :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/21 15:59:16 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/02/16 14:18:33 by rmouhoub         ###   ########.fr       */
+/*   Created: 2023/03/11 17:42:38 by rmouhoub          #+#    #+#             */
+/*   Updated: 2023/03/11 19:09:59 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fdf.h"
 
-int	ft_strcontain(const void *s1, const void *s2)
+void	read_map(char *file, t_point *points_list)
 {
-	int	i;
+	int	fd;
 
-	i = 0;
-	while (((char *)s1)[i])
-	{
-		if (((char *)s1)[i] == *((char *)s2))
-			return (1);
-		i++;
-	}
-	return (0);
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		exite(1);
+	get_next()
+	
 }
