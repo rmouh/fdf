@@ -6,7 +6,7 @@
 #    By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/10 16:09:23 by rmouhoub          #+#    #+#              #
-#    Updated: 2023/03/11 18:40:24 by rmouhoub         ###   ########.fr        #
+#    Updated: 2023/02/16 12:10:53 by rmouhoub         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ SRCS	= ft_memset.c \
 			  ft_calloc.c \
 			  ft_strdup.c \
 			  ft_substr.c \
-			  ft_strjoin.c \
+			  ft_strjoinn.c \
 			  ft_strtrim.c \
 			  ft_striteri.c \
 			  ft_split.c \
@@ -44,12 +44,15 @@ SRCS	= ft_memset.c \
 			  ft_putstr_fd.c \
 			  ft_putendl_fd.c \
 			  ft_putnbr_fd.c \
+			  ft_strcontain.c \
+			  ft_lstlast_free.c\
 			  ft_printf.c \
 			  ft_printf_util.c \
 			  ft_lstnew.c \
 			  ft_lstadd_front.c \
 			  ft_lstsize.c \
 			  ft_lstlast.c \
+			  ft_beforlast.c \
 			  ft_lstadd_back.c \
 			  ft_lstdelone.c \
 			  ft_lstclear.c \

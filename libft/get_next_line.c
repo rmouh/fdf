@@ -6,7 +6,7 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 18:33:11 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/03/11 18:32:18 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/02/18 18:16:20 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char	*reading(int fd, char *reading_buf, char *stock)
 			return (NULL);
 		}
 		reading_buf [readed] = '\0';
-		stock = ft_strjoin2(stock, reading_buf);
+		stock = ft_strjoin(stock, reading_buf);
 	}
 	return (stock);
 }
@@ -100,7 +100,7 @@ char	*get_after_line(char *str)
 	return (buf);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, int boolean)
 {
 	char		*reading_buf;
 	char		*line;
@@ -108,6 +108,8 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
+	if (boolean)
+		return (free(stock), NULL);
 	reading_buf = malloc (sizeof(char) * (BUFFER_SIZE + 1));
 	if (!reading_buf)
 		return (NULL);

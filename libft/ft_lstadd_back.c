@@ -6,7 +6,7 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:13:59 by rmouhoub          #+#    #+#             */
-/*   Updated: 2022/11/11 18:44:42 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/02/02 15:23:04 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
 	t_list	*last;
+	t_list	*track;
 
 	if (!new || !lst)
 		return ;
+	track = *lst;
 	if (!*lst)
 		*lst = new;
 	else
@@ -27,6 +29,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 			last = last->next;
 		last->next = new;
 	}
+	*lst = track;
 }
 /*
 #include <stdio.h>

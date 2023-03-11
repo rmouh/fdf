@@ -6,7 +6,7 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:09:50 by rmouhoub          #+#    #+#             */
-/*   Updated: 2022/11/11 14:09:55 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/02/18 14:35:34 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,32 @@ int	the_signe(const char *str)
 		return (1);
 	else
 		return (-1);
+}
+
+long long int	ft_atoi_long(const char *str, long long int	*tab)
+{
+	long long int	signe;
+	long long int	result;
+
+	result = 0;
+	signe = 1;
+	while (*str == ' ' || *str == '\f' || *str == '\n'
+		|| *str == '\r' || *str == '\t' || *str == '\v')
+		str++;
+	if (*str == '+' || *str == '-')
+	{
+		signe = the_signe(str);
+		str++;
+	}
+	while (*str >= '0' && *str <= '9')
+		result = (result * 10) + (*str++ - '0');
+	if (*str)
+	{
+		free(tab);
+		ft_printf("ERROR\n");
+		exit(0);
+	}
+	return (result * signe);
 }
 
 int	ft_atoi(const char *str)

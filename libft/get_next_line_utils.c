@@ -6,7 +6,7 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 12:27:37 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/03/11 18:32:10 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2022/11/29 13:44:43 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	return (cdest);
 }
 
-char	*ft_strjoin2(char *s1, char *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*str;
 	size_t	ls1;

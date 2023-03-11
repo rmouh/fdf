@@ -6,18 +6,18 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:20:12 by rmouhoub          #+#    #+#             */
-/*   Updated: 2022/11/07 17:58:02 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/02/16 19:13:19 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
-{
-	size_t	len;
+// size_t	ft_strlen(char *s)
+// {
+// 	size_t	len;
 
-	len = 0;
-	while (*s++)
-		len++;
-	return (len);
-}
+// 	len = 0;
+// 	while (*s++)
+// 		len++;
+// 	return (len);
+// }

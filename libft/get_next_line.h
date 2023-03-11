@@ -6,7 +6,7 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 18:52:15 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/03/11 18:32:24 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/02/18 17:22:25 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ char		*get_line(char *str);
 int			reached_eol(char *str);
 char		*reading(int fd, char *reading_buf, char *stock);
 char		*get_after_line(char *str);
-char		*get_next_line(int fd);
+char		*get_next_line(int fd, int boolean);
 size_t		ft_strlen(const char *s);
-char		*ft_strjoin2(char *s1, char *s2);
+char		*ft_strjoin(char *s1, char *s2);
 void		*ft_memcpy(void *dest, const void *src, size_t n);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:19:03 by rmouhoub          #+#    #+#             */
-/*   Updated: 2022/11/12 19:24:49 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/02/16 12:08:47 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoinn(char const *s1, char const *s2)
 {
 	char	*str;
 	size_t	ls1;
