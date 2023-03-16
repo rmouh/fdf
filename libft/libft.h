@@ -6,7 +6,7 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:35:37 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/02/18 17:23:09 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/03/16 17:48:10 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,29 +17,15 @@
 # include <unistd.h>
 # define MAXSIZE 18446744013709551615UL
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
+#  define BUFFER_SIZE 200
 # endif
 # define HEXA_DECIM "0123456789abcdef0123456789ABCDEF"
 
-typedef struct s_bestmove
-{
-	int	ra;
-	int	rra;
-	int	rb;
-	int	rrb;
-	int	rr;
-	int	rrr;
-	int	bok;
-	int	bok_index;
-}			t_bestmove;
-
 typedef struct s_list
 {
-	int				content;
+	char			*content;
 	int				index;
-	int				lower_cost;
 	struct s_list	*next;
-	t_bestmove		ell;
 }					t_list;
 
 /*
@@ -58,13 +44,14 @@ void				*ft_memmove(void *dest, const void *src, int n);
 void				*ft_memchr(const void *s, int c, size_t n);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 t_list				*ft_callloc(int nmemb);
+void				*ft_calloc(size_t nmemb, size_t size);
 int					*ft_callloc_tab(int nmemb);
 long long int		*ft_calloc_tab(int nmemb, int sizeoff);
 
 /*
 ** String
 */
-//size_t				ft_strlen(char *s);
+size_t				ft_strlenn(char **s);
 size_t				ft_strlcpy(char *dest, const char *src, size_t size);
 size_t				ft_strlcat(char *dest, const char *src, size_t size);
 char				*ft_strchr(const char *s, int c);
@@ -112,18 +99,20 @@ void				ft_putnbr_fd(int n, int fd);
 // 	struct s_list	*next;
 // }					t_list;
 
-t_list				*ft_lstnew(int content, int index);
+t_list				*ft_lstnew(char *content, int index);
 t_list				*ft_lstlast(t_list *lst);
 t_list				*ft_beforlast(t_list *lst);
 void				ft_lstadd_front(t_list **lst, t_list *new);
 void				ft_lstadd_back(t_list **lst, t_list *new);
-void				ft_lstdelone(t_list *lst, void (*del)(int));
-void				ft_lstclear(t_list **lst, void (*del)(int));
+void				ft_lstdelone(t_list *lst, void (*del)(char *));
+void				ft_lstclear(t_list **lst, void (*del)(char *));
 int					ft_lstsize(t_list *lst);
 // t_list				*ft_lstmap(t_list *lst, void *(*f)(int),
 // 						void (*del)(int));
-void				ft_lstiter(t_list *lst, void (*f)(int));
+void				ft_lstiter(t_list *lst, void (*f)(char *));
 t_list				*ft_lstlast_free(t_list *lst);
+void				printll(t_list *chaine);
+
 
 /*
 ** printf

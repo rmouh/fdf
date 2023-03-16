@@ -6,13 +6,13 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 18:40:15 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/01/20 16:23:52 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/03/16 14:09:15 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(int))
+void	ft_lstiter(t_list *lst, void (*f)(char *))
 {
 	while (lst != NULL)
 	{

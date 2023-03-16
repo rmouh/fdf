@@ -6,7 +6,7 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:13:59 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/02/02 15:23:04 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/03/16 15:02:22 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		return ;
 	track = *lst;
 	if (!*lst)
+	{
 		*lst = new;
+		return ;
+	}
 	else
 	{
 		last = *lst;

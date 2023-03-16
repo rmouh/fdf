@@ -6,11 +6,26 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:10:42 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/02/16 14:35:09 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/03/16 13:33:52 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	void	*buf;
+
+	if (nmemb > MAXSIZE || size > MAXSIZE)
+		return (NULL);
+	buf = malloc(size * nmemb);
+	if (!buf)
+		return (NULL);
+	if (buf)
+		ft_bzero(buf, size * nmemb);
+	return (buf);
+}
+
 
 t_list	*ft_callloc(int nmemb)
 {

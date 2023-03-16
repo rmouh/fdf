@@ -6,13 +6,13 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 19:27:15 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/01/20 16:21:04 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/03/16 14:09:27 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(int))
+void	ft_lstclear(t_list **lst, void (*del)(char *))
 {
 	t_list	*track;
 	t_list	*nextt;

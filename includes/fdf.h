@@ -6,7 +6,7 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:53:34 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/03/11 18:01:34 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/03/16 19:23:01 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 # define FDF_H
 
 # include "../mlx/mlx/mlx.h"
-#include<stdio.h> 
-#include <fcntl.h> 
+# include<stdio.h> 
+# include <fcntl.h> 
+# include "libft.h"
 
 typedef struct s_data {
 	void	*img;
@@ -35,3 +36,15 @@ typedef struct s_point {
 }				t_point;
 
 #endif
+
+/*
+
+t_point	**my = (t_point **)malloc (sizeof(t_point *) * num);
+
+i = 0;
+while (i < num)
+{
+	my[i] = (t_point *)malloc (sizeof(t_point) * width);
+}
+
+*/

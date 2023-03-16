@@ -6,7 +6,7 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:17:39 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/01/20 19:58:15 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/03/16 18:05:11 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	*put_intab(char const *str, char c, int *i)
 		res[k++] = str[*i];
 		(*i)++;
 	}
-	res[k] = 0;
+	res[k] = '\0';
 	return (res);
 }
 
