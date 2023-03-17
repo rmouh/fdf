@@ -6,7 +6,7 @@
 #    By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/24 18:05:45 by rmouhoub          #+#    #+#              #
-#    Updated: 2023/03/11 17:50:46 by rmouhoub         ###   ########.fr        #
+#    Updated: 2023/03/17 18:43:36 by rmouhoub         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,13 @@ DIR_OBJS		=	objs
 
 DIR_TEST		=	test
 DIR_PARSING		=	parsing
+DIR_MAPPING		=	mapping
+
 
 SRCS_NAMES 		= 	$(DIR_TEST)/test.c \
 					$(DIR_PARSING)/parsing.c \
+					$(DIR_PARSING)/utils.c \
+					$(DIR_MAPPING)/mult.c \
 					
 
 OBJS_NAMES		=	${SRCS_NAMES:.c=.o}
@@ -46,12 +50,13 @@ $(NAME): $(OBJS)
 	@echo "\033[34;5mfdf\033[0m"
 
 $(DIR_OBJS)/%.o: $(DIR_SRCS)/%.c | $(DIR_OBJS)
-	$(CC) $(CFLAGS) -c $< -o $@ $(HEAD)
+	$(CC)  -c $< -o $@ $(HEAD)
 
 $(DIR_OBJS):
 	mkdir -p $(DIR_OBJS)
 	mkdir -p objs/test
 	mkdir -p objs/parsing
+	mkdir -p objs/mapping
 
 
 
