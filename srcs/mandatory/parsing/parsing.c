@@ -6,24 +6,26 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 17:42:38 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/03/17 20:34:53 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/03/18 18:27:52 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 //https://cdn.intra.42.fr/users/3043355b639371ff9f7b9eb3f805feb4/rmouhoub.jpg
 
-int	ft_atoi_base(char *nb, unsigned long base)
-{
-	if (nb > base - 1)
-		return (ft_putnbrr((nb / base), base));
-	return ((HEXA_DECIM[nb % base]));
-}
+// int	ft_atoi_base(char *nb, unsigned long base)
+// {
+// 	if (nb > base - 1)
+// 		return (ft_putnbrr((nb / base), base));
+// 	return ((HEXA_DECIM[nb % base]));
+// }
 
-
+/*
+		nb is the nember of lignes in the map (the hight)
+*/
 t_list	*read_map(char *file, int *nb)
 {
-	int		fd;0x00FF0000
+	int		fd;
 	char	*read;
 	t_list	*temp;
 	t_list	*chaine;
@@ -40,14 +42,8 @@ t_list	*read_map(char *file, int *nb)
 		ft_lstadd_back(&chaine, temp);
 		read = get_next_line(fd, 0);
 	}
-	
 	get_next_line(fd, 1);
 	return (chaine);
-	// points_list = ft_malloc(sizeof(t_point)*)
-	// if (dd < 0)
-	// 	exite(1);
-	// read = get_next_line(fd);
-	// if (ft_strncmp(",", read, 1) == 0)
 
 }
 
@@ -64,6 +60,7 @@ int	put_in_tab(int nb, int size_all, t_point **tab, t_list *track)
 	{
 		line = ft_split(track->content, ' ');
 		line_size = ft_strlenn(line) - 1;
+		printf("line size %d\n", line_size);
 		size_all += line_size;
 		track = track->next;
 		tab[i] = malloc (sizeof(t_point) * line_size);
@@ -72,48 +69,62 @@ int	put_in_tab(int nb, int size_all, t_point **tab, t_list *track)
 		get_cords_colors(line_size, tab, line, i);
 		i++;
 	}
-	return (size_all);
+	return (line_size);
 }
 
-t_point	**creat_table(char *file, int *size)
+/*
+		this fonction reades the file and store a linked list of linesin strings (chaine)
+		create a matrix 
+		store in mat->mat_point a 2D array of points
+		return 
+
+*/
+
+t_matrix	*creat_table(char *file, int *size)
 {
-	t_point	**tab;
-	int		nb;
-	int		size_all;
-	t_list	*chaine;
-	t_list	*track;
+	t_matrix	*mat;
+	int			nb;
+	int			size_all;
+	t_list		*chaine;
+	t_list		*track;
 
 	size_all = 0;
 	chaine = read_map(file, &nb);
-	tab = malloc(sizeof(t_point *) * nb);
-	if (!tab)
-		return (free (tab), free_list(chaine), NULL);
-	printll(chaine);
+	mat = malloc (sizeof(t_matrix));
+	mat->matrix_points = malloc(sizeof(t_point *) * nb);
+	if (!(mat->matrix_points))
+		return (free_list(chaine), NULL);
 	track = chaine;
-	*size = put_in_tab(nb, size_all, tab, track);
+	*size = put_in_tab(nb, size_all, mat->matrix_points, track);
 	if (*size == 0)
-		return (free (tab), free_list(chaine), NULL);
-	return (tab);
+		return (free (mat->matrix_points), free_list(chaine), NULL);
+	mat->width = *size;
+	mat->height = nb;
+	return (mat);
 }
 
+int	main(void)
+{
+	int	size;
+	t_point	**tab;
+	t_matrix	*mat;
+	//chaine = read_map("test_maps/10-2.fdf", &nb);
+	mat = creat_table("test_maps/42.fdf", &size);
+	the_formula(mat, 0.5, 1.3);
+	tab = mat->matrix_points;
+	for (int i = 0; i<11; i++)
+	{
+		for (int j = 0; j< 19; j++)
+		{
+			printf ("%d ",(int) (tab[i][j]).z);
+			//ft_printf ("[%d][%d] = %d	", (tab[i][j]).y, (tab[i][j]).x, (tab[i][j]).z);
+		}
+		printf("\n");
+	}
+	// int r = ft_putnbrr(ff, 16);
+	// unsigned  r = oxff;
+	printf(" hi %d  w %d\n", mat->height, mat->width);
 
-// int	main(void)
-// {
-// 	int	size;
-// 	t_point	**tab;
-// 	//chaine = read_map("test_maps/10-2.fdf", &nb);
-// 	tab = creat_table("test_maps/10-2.fdf", &size);
-// 	for (int i = 0; i< 10; i++)
-// 	{
-// 		for (int j = 0; j< 10; j++)
-// 		{
-// 			ft_printf ("[%d][%d] = %d	", (tab[i][j]).y, (tab[i][j]).x, (tab[i][j]).z);
-// 		}
-// 		ft_printf("\n");
-// 	}
-// 	// int r = ft_putnbrr(ff, 16);
-// 	// unsigned  r = oxff;
-// 	// printf("%d\n", r);
 	
 
-// }
+}

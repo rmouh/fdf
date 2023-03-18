@@ -6,7 +6,7 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:25:20 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/03/17 19:10:40 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/03/18 19:28:13 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,17 @@ void	free_tab(t_point **tab)
 	free(track);
 }
 
-void	free_tab_int(int **tab)
+void	free_tab_int(t_tab *tab)
 {
-	int	*track;
+	double	*track;
 	int		i;
 
 	i = 0;
-	track = *tab;
-	while (tab[i++])
-		free(tab[i]);
-	free(track);
+	track = *(tab->tab);
+	while (i < tab->height)
+		free(tab->tab[i++]);
+	free(tab->tab);
+	free(tab);
 }
 
 void	free_list(t_list *chaine)

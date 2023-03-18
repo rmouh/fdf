@@ -6,12 +6,11 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:26:59 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/03/17 20:31:05 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/03/18 19:26:23 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
 void	initialise_p(t_point *p)
 {
 	p->x = 0;
@@ -27,22 +26,58 @@ void	initialise_p(t_point *p)
 	  p == 4
 */
 
-int	**malloc_matric_n(int n, int p, int **res)
+t_tab	*malloc_matric_n(int n, int p, t_tab *res)
 {
 	int	i;
 
 	i = 0;
-	res = malloc(sizeof(int *) * n);
+	res = malloc (sizeof(t_tab));
 	if (!res)
+		return (NULL);
+	res->tab = malloc(sizeof(double *) * n);
+	if (!(res->tab))
 		return (free(res), NULL);
+	res->height = n;
+	res->width = p;
 	while (i < n)
 	{
-		res[i] = calloc(sizeof(int), p);
-		if (!res[i])
+		res->tab[i] = calloc(sizeof(double), p);
+		if (!res->tab[i])
 			return (free_tab_int(res), NULL);
 		i++;
 	}
 	return (res);
+}
+
+int	the_formula(t_matrix *matrix, double alpha, double beta)
+{
+	t_tab		*res;
+	int			i;
+	int			j;
+	t_tab		*tab1;
+	t_tab		*tab2;
+	t_point		*p;
+	t_camera	*cam;
+
+	i = 0;
+	j = 0;
+	tab1 = NULL;
+	tab2 = NULL;
+	cam = initialize_cam(alpha, beta);
+	res = first_mult(cam, tab1, tab2);
+	if (!res)
+		return (free(cam), -1);
+	while (i < matrix->height)
+	{
+		while (j < matrix->width)
+		{
+			*p = (matrix->matrix_points[i][j]);
+			third_mult(p, second_mult(res, p));
+			j++;
+		}
+		i++;
+	}
+	return (1);
 }
 
 // void	multiplicate(t_point *p1, t_point *p2)
@@ -54,32 +89,12 @@ int	**malloc_matric_n(int n, int p, int **res)
 	
 */
 
-int	**first_mult(t_camera cam, int	**tab1, int	**tab2)
+t_tab	*multiplicate(double **tab1, double **tab2, int n, int q, int m)
 {
-	int	**res;
-
-	tab1 = malloc_matric_n(3, 3, tab1);
-	tab2 = malloc_matric_n(3, 3, tab2);
-	tab1[0][0] = 1;
-	tab1[1][1] = cos(cam.alpha);
-	tab1[1][2] = sin(cam.alpha);
-	tab1[2][1] = -sin(cam.alpha);
-	tab1[2][2] = cos(cam.alpha);
-	tab2[0][0] = cos(cam.beta);
-	tab2[0][2] = -sin(cam.beta);
-	tab2[1][1] = 1;
-	tab2[2][0] = sin(cam.beta);
-	tab2[2][2] = coss(cam.beta);
-	res = multiplicate(tab1, tab1, 3, 3, 3);
-	return (res);
-}
-
-int	**multiplicate(int **tab1, int **tab2, int n, int q, int m)
-{
-	int	i;
-	int	j;
-	int	k;
-	int	**res;
+	int		i;
+	int		j;
+	int		k;
+	t_tab	*res;
 
 	i = 0;
 	res = NULL;
@@ -92,7 +107,7 @@ int	**multiplicate(int **tab1, int **tab2, int n, int q, int m)
 			k = 0;
 			while (k < m)
 			{
-				res[i][j] += tab1[i][k] * tab2[k][j];
+				res->tab[i][j] += tab1[i][k] * tab2[k][j];
 				k++;
 			}
 			j++;
@@ -102,44 +117,46 @@ int	**multiplicate(int **tab1, int **tab2, int n, int q, int m)
 	return (res);
 }
 
-int	main(void)
-{
-	int	**tab=NULL;
-	int	**tab1=NULL;
-	int	**tab2=NULL;
+// int	main(void)
+// {
+// 	t_camera 	*cam;
+// 	// int	**tab=NULL;
+// 	// int	**tab1=NULL;
+// 	// int	**tab2=NULL;
 
 	
-	// int A[3][3] = [[1, 2, 5], [3, 4, 2], [5, 6, 0]];
-    // int B[3][3] = [[1, 2, 3], [5, 6, 7], [0, 0, 0]];
-	tab1 = malloc_matric_n(3,3, tab1);
-	tab2 = malloc_matric_n(3,3, tab2);
+// 	// int A[3][3] = [[1, 2, 5], [3, 4, 2], [5, 6, 0]];
+//     // int B[3][3] = [[1, 2, 3], [5, 6, 7], [0, 0, 0]];
+// 	// tab1 = malloc_matric_n(3,3, tab1);
+// 	// tab2 = malloc_matric_n(3,3, tab2);
 	
-	tab1[0][0] = 2;
-	tab1[0][1] = 6;
-	tab1[0][2] = 8;
-	tab1[1][0] = 4;
-	tab1[1][1] = 55;
-	tab1[1][2] = 5;
-	tab1[2][0] = 0;
-	tab1[2][1] = 2;
-	tab1[2][2] = 1;
-	print_tab(3, 3, tab1);
+// 	// tab1[0][0] = 2;
+// 	// tab1[0][1] = 6;
+// 	// tab1[0][2] = 8;
+// 	// tab1[1][0] = 4;
+// 	// tab1[1][1] = 55;
+// 	// tab1[1][2] = 5;
+// 	// tab1[2][0] = 0;
+// 	// tab1[2][1] = 2;
+// 	// tab1[2][2] = 1;
+// 	// print_tab(3, 3, tab1);
 
 	
-	tab2[0][0] = 1;
-	tab2[0][1] = 0;
-	// tab2[0][2] = 5;
-	tab2[1][0] = -8;
-	tab2[1][1] = 6;
-	// tab2[1][2] = 3;
-	tab2[2][0] = 4;
-	tab2[2][1] = 2;
-	// tab2[2][2] = 1;
+// 	// tab2[0][0] = 1;
+// 	// tab2[0][1] = 0;
+// 	// // tab2[0][2] = 5;
+// 	// tab2[1][0] = -8;
+// 	// tab2[1][1] = 6;
+// 	// // tab2[1][2] = 3;
+// 	// tab2[2][0] = 4;
+// 	// tab2[2][1] = 2;
+// 	// // tab2[2][2] = 1;
 
-	print_tab(3, 3, tab2);
+// 	// print_tab(3, 3, tab2);
 
-	tab = multiplicate(tab1, tab2, 3, 2, 3);
-	ft_printf("res\n");
-	print_tab(3, 2, tab);
+// 	// tab = multiplicate(tab1, tab2, 3, 2, 3);
+// 	// ft_printf("res\n");
+// 	// print_tab(3, 2, tab);
 
-}
+// 	printf("%lf  %lf\n", cam->alpha, cam->beta);
+// }

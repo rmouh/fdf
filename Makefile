@@ -6,7 +6,7 @@
 #    By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/24 18:05:45 by rmouhoub          #+#    #+#              #
-#    Updated: 2023/03/17 18:43:36 by rmouhoub         ###   ########.fr        #
+#    Updated: 2023/03/18 15:14:43 by rmouhoub         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRCS_NAMES 		= 	$(DIR_TEST)/test.c \
 					$(DIR_PARSING)/parsing.c \
 					$(DIR_PARSING)/utils.c \
 					$(DIR_MAPPING)/mult.c \
+					$(DIR_MAPPING)/utils.c \
 					
 
 OBJS_NAMES		=	${SRCS_NAMES:.c=.o}
@@ -46,7 +47,7 @@ all				:	${NAME}
 $(NAME): $(OBJS)
 	make -C libft
 	mv libft/libft.a .
-	$(CC) $(OBJS) $(CFLAGS) mlx/libmlx.a mlx/libmlx_Linux.a -L. -lXext -L. -lX11 ${LIBFT}  -o $(NAME)
+	$(CC) $(OBJS) $(CFLAGS) mlx/libmlx.a mlx/libmlx_Linux.a -L. -lXext -L. -lX11 -lm ${LIBFT}  -o $(NAME)
 	@echo "\033[34;5mfdf\033[0m"
 
 $(DIR_OBJS)/%.o: $(DIR_SRCS)/%.c | $(DIR_OBJS)
