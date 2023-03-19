@@ -17,12 +17,12 @@ LIBFT			=	libft.a
 DIR_SRCS		=	srcs/mandatory
 DIR_OBJS		=	objs
 
-DIR_TEST		=	test
+DIR_DISPLAY		=	display
 DIR_PARSING		=	parsing
 DIR_MAPPING		=	mapping
 
 
-SRCS_NAMES 		= 	$(DIR_TEST)/test.c \
+SRCS_NAMES 		= 	$(DIR_DISPLAY)/display.c \
 					$(DIR_PARSING)/parsing.c \
 					$(DIR_PARSING)/utils.c \
 					$(DIR_MAPPING)/mult.c \
@@ -55,7 +55,7 @@ $(DIR_OBJS)/%.o: $(DIR_SRCS)/%.c | $(DIR_OBJS)
 
 $(DIR_OBJS):
 	mkdir -p $(DIR_OBJS)
-	mkdir -p objs/test
+	mkdir -p objs/display
 	mkdir -p objs/parsing
 	mkdir -p objs/mapping
 

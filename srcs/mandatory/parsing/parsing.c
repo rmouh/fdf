@@ -6,18 +6,69 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 17:42:38 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/03/19 12:39:50 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/03/19 16:00:43 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 //https://cdn.intra.42.fr/users/3043355b639371ff9f7b9eb3f805feb4/rmouhoub.jpg
 
-// int	ft_atoi_base(char *nb, unsigned long base)
+int	is_upper(char c)
+{
+	return ((c >= 'A' && c <= 'Z'));
+}
+
+double	conversion(char *p, int sign, int base)
+{
+	double	result;
+	int		digit;
+
+	result = 0;
+	while (ft_isalnum(*p))
+	{
+		if (ft_isdigit(*p))
+			digit = (*p - '0');
+		else
+		{
+			if (is_upper(*p))
+				digit = (*p - 'A' + 10);
+			else
+				digit = (*p - 'a' + 10);
+		}
+		if (digit >= base)
+			break ;
+		result = result * base + digit;
+		++p;
+	}
+	return (result * sign);
+}
+
+double	ft_atoi_base(char *str, int base)
+{
+	char	*p;
+	int		sign;
+
+	p = str;
+	sign = 1;
+	while (*p == ' ' || *p != ',')
+		++p;
+	p++;
+	if (*p++ == '-')
+		sign = -1;
+	else
+		sign = 1;
+	if (*p == '0')
+		++p;
+	if (*p == 'x' || *p == 'X')
+			++p;
+	return (conversion(p, sign, base));
+}
+
+// int	ft_atoi_base(char *nb, unsigned long base, double *res)
 // {
 // 	if (nb > base - 1)
-// 		return (ft_putnbrr((nb / base), base));
-// 	return ((HEXA_DECIM[nb % base]));
+// 		return (ft_atoi_base((nb / base), base));
+// 	return (res(HEXA_DECIM[nb % base]));
 // }
 
 /*
@@ -113,35 +164,29 @@ t_matrix	*creat_table(char *file, int *size)
 	return (mat);
 }
 
+/*
 int	main(void)
 {
+
+	//double d  = ft_atoi_base("0x0FF0000", 16);
+	//printf(" %lf\n", d);
 	int	size;
 	t_point	**tab;
 	t_matrix	*mat;
 	//chaine = read_map("test_maps/10-2.fdf", &nb);
 
 	
-	mat = creat_table("test_maps/42.fdf", &size);
-	printf(" hi %d  w %d\n", mat->height, mat->width);
-	//print_matr_double_z(mat);
-	free_matrix(mat);
-	
-	//the_formula(mat, 0.5, 1.3);
-	//tab = mat->matrix_points;
-	//print_tab(mat->height, mat->width, tab);
-	// for (int i = 0; i<11; i++)
-	// {
-	// 	for (int j = 0; j< 19; j++)
-	// 	{
-	// 		printf ("%d ", (tab[i][j]).z);
-	// 		//ft_printf ("[%d][%d] = %d	", (tab[i][j]).y, (tab[i][j]).x, (tab[i][j]).z);
-	// 	}
-	// 	printf("\n");
-	// }
-	// int r = ft_putnbrr(ff, 16);
-	// unsigned  r = oxff;
+	mat = creat_table("test_maps/pyramide.fdf", &size);
 	//printf(" hi %d  w %d\n", mat->height, mat->width);
+	print_matr_double_z(mat);
+
+	//print_matr_double_z(mat);
+	the_formula(mat, 35.264, 45);
+	print_matr_double_new_x_y(mat);
+	//ft_printf("%d", ft_strcontain("200xFF0000", ","));
+	free_matrix(mat);
 
 	
 
 }
+*/

@@ -6,7 +6,7 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:53:34 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/03/19 12:39:12 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/03/19 15:53:36 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,15 @@ t_matrix	*creat_table(char *file, int *size);
 void		print_tab_int(int hi, int wi, int **tab);
 void		print_matr_double_z(t_matrix *mat);
 void		print_matr_double_new_x_y(t_matrix *mat);
+void		print_tab_double(int hi, int wi, double **tab);
+
+/*
+		hexa conversion
+*/
+
+double		ft_atoi_base(char *str, int base);
+double		conversion(char *p, int sign, int base);
+int			is_upper(char c);
 
 /*
 
@@ -83,12 +92,19 @@ t_tab		*multiplicate(double **tab1, double **tab2, int n, int q, int m);
 t_camera	*initialize_cam(double alpha, double beta);
 
 		/* multiplications */
+
 t_tab		*first_mult(t_camera *cam, t_tab*tab1, t_tab *tab2);
 t_tab		*second_mult(double **tab, t_point *point);
 void		third_mult(t_point *point, t_tab *vect);
 int			the_formula(t_matrix *matrix, double alpha, double beta);
 t_tab		*multiplicate(double **tab1, double **tab2, int n, int q, int m);
 
+
+
+/*			
+			display
+							*/
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 #endif
 

@@ -6,7 +6,7 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:26:59 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/03/19 11:12:54 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/03/19 13:28:57 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,22 +64,28 @@ int	the_formula(t_matrix *matrix, double alpha, double beta)
 	tab2 = NULL;
 	cam = initialize_cam(alpha, beta);
 	res = first_mult(cam, tab1, tab2);
+	free(cam);
 	//print_tab_double(res->height, res->width, res->tab);
 	if (!res)
 		return (free(cam), -1);
 	printf(" hi %d  w %d\n", matrix->height, matrix->width);
-	//print_tab_int(matrix->height, matrix->width, matrix->matrix_points);
-	// while (i < matrix->height)
-	// {
-	// 	j = 0;
-	// 	while (j < matrix->width)
-	// 	{
-	// 		*p = (matrix->matrix_points[i][j]);
-	// 		third_mult(p, second_mult(res->tab, p));
-	// 		j++;
-	// 	}
-	// 	i++;
-	// }
+	//print_matr_double_z(matrix);
+	while (i < matrix->height)
+	{
+		j = 0;
+		while (j < matrix->width)
+		{
+			//print_matr_double_z(matrix);
+			//printf("[%d %d %d]\n", matrix->matrix_points[i][j].x, matrix->matrix_points[i][j].y, matrix->matrix_points[i][j].z);
+			p = &(matrix->matrix_points[i][j]);
+			t_tab * t = second_mult(res->tab, p);
+			//print_tab_double(t->height, t->width, t->tab);
+			third_mult(p, t);
+			j++;
+		}
+		i++;
+	}
+	free_tab_int(res);
 	return (1);
 }
 
