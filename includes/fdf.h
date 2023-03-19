@@ -6,7 +6,7 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:53:34 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/03/18 19:16:44 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/03/19 12:39:12 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,17 @@ typedef struct s_tab{
 		parsing fonctions
 
 */
-void		free_tab(t_point **tab);
+void		free_line(char **tab);
 void		free_tab_int(t_tab *tab);
-void		free_list(t_list *chaine);
+void		free_list(t_list **chaine);
+void		free_matrix(t_matrix *mat);
 t_list		*read_map(char *file, int *nb);
 void		get_cords_colors(int line_size, t_point **tab, char **line, int i);
 int			put_in_tab(int nb, int size_all, t_point **tab, t_list *track);
 t_matrix	*creat_table(char *file, int *size);
-void		print_tab(int hi, int wi, int **tab);
-
+void		print_tab_int(int hi, int wi, int **tab);
+void		print_matr_double_z(t_matrix *mat);
+void		print_matr_double_new_x_y(t_matrix *mat);
 
 /*
 

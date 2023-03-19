@@ -6,7 +6,7 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:26:59 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/03/18 19:26:23 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/03/19 11:12:54 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,23 +60,26 @@ int	the_formula(t_matrix *matrix, double alpha, double beta)
 	t_camera	*cam;
 
 	i = 0;
-	j = 0;
 	tab1 = NULL;
 	tab2 = NULL;
 	cam = initialize_cam(alpha, beta);
 	res = first_mult(cam, tab1, tab2);
+	//print_tab_double(res->height, res->width, res->tab);
 	if (!res)
 		return (free(cam), -1);
-	while (i < matrix->height)
-	{
-		while (j < matrix->width)
-		{
-			*p = (matrix->matrix_points[i][j]);
-			third_mult(p, second_mult(res, p));
-			j++;
-		}
-		i++;
-	}
+	printf(" hi %d  w %d\n", matrix->height, matrix->width);
+	//print_tab_int(matrix->height, matrix->width, matrix->matrix_points);
+	// while (i < matrix->height)
+	// {
+	// 	j = 0;
+	// 	while (j < matrix->width)
+	// 	{
+	// 		*p = (matrix->matrix_points[i][j]);
+	// 		third_mult(p, second_mult(res->tab, p));
+	// 		j++;
+	// 	}
+	// 	i++;
+	// }
 	return (1);
 }
 
