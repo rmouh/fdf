@@ -6,7 +6,7 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 14:59:25 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/03/19 13:20:58 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/03/26 13:17:58 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ t_tab	*second_mult(double **tab, t_point *point)
 	return (res);
 }
 
-void	third_mult(t_point *point, t_tab *vect)
+void	third_mult(t_point *point, t_tab *vect, t_tran t)
 {
 	t_tab	*tab1;
 	t_tab	*res;
@@ -78,8 +78,8 @@ void	third_mult(t_point *point, t_tab *vect)
 	tab1->tab[1][1] = 1;
 	res = multiplicate(tab1->tab, vect->tab, 3, 1, 3);
 	free_tab_int(tab1);
-	(*point).new_x = res->tab[0][0];
-	(*point).new_y = res->tab[1][0];
+	(*point).new_x = res->tab[0][0] + WINDOW_WIDTH / 2;
+	(*point).new_y = res->tab[1][0] + 700;
 	free_tab_int(res);
 	free_tab_int(vect);
 }

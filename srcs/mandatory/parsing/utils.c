@@ -6,7 +6,7 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:25:20 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/03/19 16:36:11 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/03/26 11:02:07 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,7 @@ void	print_matr_double_new_x_y(t_matrix *mat)
 		j = 0;
 		while (j < mat->width)
 		{
-			printf ("[%lf, %lf]   ", mat->matrix_points[i][j].new_x, mat->matrix_points[i][j].new_y);
+			printf ("[%d, %d]->[%lf, %lf]   ",i, j, mat->matrix_points[i][j].new_x, mat->matrix_points[i][j].new_y);
 			j++;
 		}
 		i++;

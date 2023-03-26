@@ -6,11 +6,12 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:26:59 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/03/19 13:28:57 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/03/26 12:25:09 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
 void	initialise_p(t_point *p)
 {
 	p->x = 0;
@@ -49,7 +50,7 @@ t_tab	*malloc_matric_n(int n, int p, t_tab *res)
 	return (res);
 }
 
-int	the_formula(t_matrix *matrix, double alpha, double beta)
+int	the_formula(t_matrix *matrix, double alpha, double beta, t_tran tr)
 {
 	t_tab		*res;
 	int			i;
@@ -80,7 +81,7 @@ int	the_formula(t_matrix *matrix, double alpha, double beta)
 			p = &(matrix->matrix_points[i][j]);
 			t_tab * t = second_mult(res->tab, p);
 			//print_tab_double(t->height, t->width, t->tab);
-			third_mult(p, t);
+			third_mult(p, t, tr);
 			j++;
 		}
 		i++;

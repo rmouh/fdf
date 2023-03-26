@@ -6,7 +6,7 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:53:34 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/03/19 15:53:36 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/03/26 17:11:50 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@
 # include <fcntl.h>
 # include <math.h> 
 # include "libft.h"
+# ifndef WINDOW_HEIGHT
+#  define WINDOW_HEIGHT 1080
+# endif
+# ifndef WINDOW_WIDTH
+#  define WINDOW_WIDTH 1920
+# endif
 
 typedef struct s_data {
 	void	*img;
@@ -40,6 +46,11 @@ typedef struct s_camera{
 	double	alpha;
 	double	beta;
 }				t_camera;
+
+typedef struct s_translation{
+	int	x;
+	int	y;
+}				t_tran;
 
 typedef struct s_matrix{
 	t_point	**matrix_points;
@@ -95,8 +106,8 @@ t_camera	*initialize_cam(double alpha, double beta);
 
 t_tab		*first_mult(t_camera *cam, t_tab*tab1, t_tab *tab2);
 t_tab		*second_mult(double **tab, t_point *point);
-void		third_mult(t_point *point, t_tab *vect);
-int			the_formula(t_matrix *matrix, double alpha, double beta);
+void		third_mult(t_point *point, t_tab *vect, t_tran t);
+int			the_formula(t_matrix *matrix, double alpha, double beta, t_tran tr);
 t_tab		*multiplicate(double **tab1, double **tab2, int n, int q, int m);
 
 
@@ -104,7 +115,17 @@ t_tab		*multiplicate(double **tab1, double **tab2, int n, int q, int m);
 /*			
 			display
 							*/
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int			absolut (double nb);
+void		draw_7(t_matrix *mat, int i, int j, t_data *img, double color);
+int			min(double nb1, double nb2);
+void		find(t_matrix *mat, t_tran *tr);
+void	ft_drawline(t_matrix *mat, int i, int j, int direct, t_data *img, double color);
+void		draw_vertical_line(int x, int y1, int y2, t_data img, double color);
+void		draw_horizontal_line(int x1, int y, int x2, t_data img, double color);
+void		set_translations(t_tran *t);
+void	ft_bresenhams(t_matrix *mat, t_point p1, t_point p2, t_data *img, double color);
+void        plot_line(int x0, int y0, int x1, int y1, t_data *img, int color);
 
 #endif
 
