@@ -6,7 +6,7 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:58:29 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/03/26 17:35:54 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/04/01 14:50:51 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,52 +85,16 @@ void set_translations(t_tran *t)
 // }
 
 
-void	drawL(int x1, int y1, int x2, int y2, t_data img, double color)
-{
-	int	dx;
-	int	dy;
-	int	p;
-	int	x;
-	int	y;
-	
-	dx = x2 - x1;
-	dy = y2 - y1;
-	x = x1;
-	y = y1;
-	p = 2 * dy - dx;
-	
-	if (dx == 0) {
-		printf("hrerer");
-		draw_vertical_line(x1, y1, y2, img, color);
-		return;
-	}
-	 if (dy == 0)
-	 {
-        draw_horizontal_line(x1, y1, x2, img, color);
-        return;
-		}
-	
-	while (x < x2) {
-		if (p >= 0) {
-			my_mlx_pixel_put(&img, x, y , color);
-			y++;
-			p = p + 2 * dy - 2 * dx;
-		}
-		else {
-			my_mlx_pixel_put(&img, x, y , color);
-			p = p + 2 * dy;
-		}
-		x++;
-	}
-}
+
 
 void	draw_7(t_matrix *mat, int i, int j, t_data *img, double color)
 {
 	//drawL(i,j, i, j+1, img, 0x0FFFFFF);
 	//drawL(i, j+1, i+1, j+1, img, 0x0FFFFFF);
 	//drawL(120, 120, 145, 85, img, 0x0FFFFFF);
-	ft_drawline(mat, i, j, 0, img,  color);
-	//ft_drawline(mat, i, j, 1, img, color);
+	//plot_line( 0, 0, p2.new_x, p2.new_y, img, color);
+	ft_drawline(mat, i, j, 0, img, color);
+	ft_drawline(mat, i, j, 1, img, color);
 	// drawline(&mat->matrix_points[i][j], &mat->matrix_points[i][j + 1], img, color, t);
 	// drawline(&mat->matrix_points[i][j + 1], &mat->matrix_points[i + 1][j + 1], img, color, t);
 	// drawline(, &mat->matrix_points[i][j + 1], img, color, mlx, mlx_win);
@@ -194,6 +158,8 @@ int	main(void)
 	// 		my_mlx_pixel_put(&img, j, i, 0x6F95A6);
 	// }
 	// plot_line(0, 0, 1000, 800, &img, 0x6F95A6);
+	//ft_drawline(mat, 5,10, 0, &img,  0x0FFFFFF);
+
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 
 
