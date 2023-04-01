@@ -401,3 +401,43 @@ void	ft_drawline(t_matrix *mat, int i, int j, int direct, t_data *img, double co
 	//plot_line(0, 0, 1000, 800, img, 0x6F95A6);
 
 }
+
+
+
+// int	main(void)
+// {
+// 	void	*mlx;
+
+// 	mlx = mlx_init();
+// }
+// int	main(void)
+// {
+// 	void	*mlx;
+// 	void	*mlx_win;
+
+// 	mlx = mlx_init();
+// 	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
+// 	mlx_loop(mlx);
+//
+
+
+
+
+
+// void	plot_line(int x0, int y0, int x1, int y1, t_data *img, int color)
+// {
+// //printf("(%d, %d, %d, %d)\n",x0,y0,x0,y0) ;
+
+//   int dx =  abs (x1 - x0), sx = x0 < x1 ? 1 : -1;
+//   int dy = -abs (y1 - y0), sy = y0 < y1 ? 1 : -1; 
+//   int err = dx + dy, e2; /* error value e_xy */
+ 
+//   for (;;){  /* loop */
+//     my_mlx_pixel_put(img, x0, y0,  color);    
+//     if (x0 == x1 && y0 == y1) break;
+//     e2 = 2 * err;
+//     if (e2 >= dy) { err += dy; x0 += sx; } /* e_xy+e_x > 0 */
+//     if (e2 <= dx) { err += dx; y0 += sy; } /* e_xy+e_y < 0 */
+//   }
+// 	//ft_printf("laaaaaa\n");
+// }

@@ -6,7 +6,7 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:25:20 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/03/26 11:02:07 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/04/01 18:16:40 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 void	free_tab_int(t_tab *tab)
 {
-	//double	*track;
-	int		i;
+	int	i;
 
 	i = 0;
-	//track = *(tab->tab);
 	while (i < tab->height)
 		free(tab->tab[i++]);
 	free(tab->tab);
@@ -27,11 +25,9 @@ void	free_tab_int(t_tab *tab)
 
 void	free_line(char **tab)
 {
-	//char	*track;
-	int		i;
+	int	i;
 
 	i = 0;
-	//track = *tab;
 	while (tab[i])
 		free(tab[i++]);
 	free(tab);
@@ -52,19 +48,6 @@ void	free_list(t_list **lst)
 		free(track);
 		track = nextt;
 	}
-	//return (1);
-	// t_list	*track;
-	// t_list	*lst;
-
-	// lst = chaine;
-	// track = chaine;
-	// while (lst != NULL)
-	// {
-	// 	lst = lst->next;
-	// 	free(track);
-	// 	track = lst;
-	// }
-	// free(track);
 }
 
 void	free_matrix(t_matrix *mat)
@@ -81,18 +64,25 @@ void	free_matrix(t_matrix *mat)
 void	get_cords_colors(int line_size, t_point **tab, char **line, int i)
 {
 	t_point	*point;
+	int count =0;
 	int		j;
 
 	j = 0;
 	while (line_size-- > 0)
 	{
-		if (ft_strcontain(line[j], ","))
-			(*point).color = ft_atoi_base(line[j], 16);
 		point = &tab[i][j];
 		(*point).z = ft_atoi(line[j]);
 		(*point).x = j * 40;
 		(*point).y = i * 40;
-		(*point).color = 16777215;
+		if (ft_strcontain(line[j], ","))
+		{
+			printf("heree");
+			(*point).color = ft_atoi_base(line[j], 16);
+			count++;
+		}
+		else
+			(*point).color =(*point).x *(*point).y;
+		printf("%lf [%d]\n", (*point).color, count);
 		j++;
 	}
 }

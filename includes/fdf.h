@@ -6,7 +6,7 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:53:34 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/04/01 15:44:00 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/04/01 17:36:59 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@
 # endif
 
 typedef struct s_data {
-	void	*img;
+	// void	*img;
 	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
+	int		bpp;
+	int		len;
 	int		endian;
 }				t_data;
 
@@ -56,6 +56,9 @@ typedef struct s_matrix{
 	t_point	**matrix_points;
 	int		width;
 	int		height;
+	void	*mlx;
+	void	*mlx_win;
+	void	*img;
 }				t_matrix;
 
 typedef struct s_tab{
@@ -63,6 +66,15 @@ typedef struct s_tab{
 	int		height;
 	int		width;
 }				t_tab;
+
+typedef struct s_coor
+{
+	int	dx;
+	int	dy;
+	int	sx;
+	int	sy;
+	int	e2;	
+}	t_coor;
 
 /*
 
@@ -81,6 +93,7 @@ void		print_tab_int(int hi, int wi, int **tab);
 void		print_matr_double_z(t_matrix *mat);
 void		print_matr_double_new_x_y(t_matrix *mat);
 void		print_tab_double(int hi, int wi, double **tab);
+void		free_close(t_matrix *mat);
 
 /*
 		hexa conversion

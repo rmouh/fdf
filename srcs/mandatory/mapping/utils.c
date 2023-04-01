@@ -6,7 +6,7 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 14:59:25 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/03/26 13:17:58 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/04/01 17:34:19 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,15 @@ void	third_mult(t_point *point, t_tab *vect, t_tran t)
 	(*point).new_y = res->tab[1][0] + 700;
 	free_tab_int(res);
 	free_tab_int(vect);
+}
+
+void	free_close(t_matrix *mat)
+{
+	mlx_destroy_image(mat->mlx, mat->img);
+	mlx_clear_window(mat->mlx, mat->mlx_win);
+	mlx_destroy_window(mat->mlx, mat->mlx_win);
+	mlx_destroy_display(mat->mlx);
+	free(mat->mlx);
+	free_matrix(mat);
+	exit(0);
 }
