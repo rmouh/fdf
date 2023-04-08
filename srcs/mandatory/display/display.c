@@ -6,7 +6,7 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:58:29 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/04/01 18:08:16 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/04/08 18:10:02 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ void	set_translations(t_tran *t)
 
 void	draw_7(t_matrix *mat, int i, int j, t_data *img, double color)
 {
-	ft_drawline(mat, i, j, 0, img, color);
-	ft_drawline(mat, i, j, 1, img, color);
+	// ft_drawline(mat, i, j, 0, img, color);
+	// ft_drawline(mat, i, j, 1, img, color);
+	ft_draw_line(mat,  i,  j,  0,  img);
+	ft_draw_line(mat,  i,  j,  1, img);
 }
 
 int	main(void)
@@ -39,7 +41,7 @@ int	main(void)
 	i = 0;
 	mat = creat_table("test_maps/42.fdf", &size);
 	set_translations(&t);
-	the_formula(mat, 35.264, 45, t);
+	the_formula(mat, 20, 50, t);
 
 	mat->mlx = mlx_init();
 	mat->mlx_win = mlx_new_window(mat->mlx, 1920, 1080, "Hello world!");
@@ -47,12 +49,17 @@ int	main(void)
 	mat->img = mlx_new_image(mat->mlx, 1920, 1080);
 	img.addr = mlx_get_data_addr(mat->img, &img.bpp, &img.len, &img.endian);
 	//print_matr_double_z( mat);
+	//mat->matrix_points[mat->height -1][0].new_x, mat->matrix_points[mat->height -1][0].new_y,
+	plot_line(mat->matrix_points[mat->height -1][0].new_x, mat->matrix_points[mat->height -1][0].new_y, mat->matrix_points[mat->height -1][mat->width-1].new_x, mat->matrix_points[mat->height-1][mat->width-1].new_y, &img, 0x0FFFFFF);
+	plot_line(mat->matrix_points[0][mat->width-1].new_x, mat->matrix_points[0][mat->width-1].new_y, mat->matrix_points[mat->height -1][mat->width-1].new_x, mat->matrix_points[mat->height-1][mat->width-1].new_y, &img, 0x0FFFFFF);
+	//plot_line(mat->matrix_points[0][0].new_x, mat->matrix_points[0][0].new_y, 50, 2, &img, 0x0FFFFFF);
+	
 	while (i < mat->height - 1)
-	{
-		j = 0;
-		while (j < mat->width - 1)
-		{
-			draw_7(mat, i, j, &img, mat->matrix_points[i][j].color);
+			{
+			j = 0;
+			while (j < mat->width - 1)
+			{
+				draw_7(mat, i, j, &img, mat->matrix_points[i][j].color);
 			//draw_7(mat, i, j, &img, 0x0FFFFFF);						
 			j++;
 		}

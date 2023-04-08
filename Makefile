@@ -6,7 +6,7 @@
 #    By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/24 18:05:45 by rmouhoub          #+#    #+#              #
-#    Updated: 2023/03/26 12:17:56 by rmouhoub         ###   ########.fr        #
+#    Updated: 2023/04/08 16:23:24 by rmouhoub         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,9 @@ DIR_MAPPING		=	mapping
 SRCS_NAMES 		= 	$(DIR_DISPLAY)/display.c \
 					$(DIR_DISPLAY)/utils.c \
 					$(DIR_PARSING)/parsing.c \
+					$(DIR_PARSING)/freeUtils.c \
 					$(DIR_PARSING)/utils.c \
+					$(DIR_PARSING)/bounds.c \
 					$(DIR_MAPPING)/mult.c \
 					$(DIR_MAPPING)/utils.c \
 					

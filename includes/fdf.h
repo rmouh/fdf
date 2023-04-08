@@ -6,7 +6,7 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:53:34 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/04/01 17:36:59 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/04/08 17:44:35 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,16 @@ typedef struct s_translation{
 	int	y;
 }				t_tran;
 
+typedef struct s_bounds{
+	double	x_max;
+	double	y_max;
+	double	z_max;
+	double	x_min;
+	double	y_min;
+	double	z_min;
+}				t_bounds;
+
+
 typedef struct s_matrix{
 	t_point	**matrix_points;
 	int		width;
@@ -86,14 +96,20 @@ void		free_tab_int(t_tab *tab);
 void		free_list(t_list **chaine);
 void		free_matrix(t_matrix *mat);
 t_list		*read_map(char *file, int *nb);
-void		get_cords_colors(int line_size, t_point **tab, char **line, int i);
-int			put_in_tab(int nb, int size_all, t_point **tab, t_list *track);
+void		get_cords_colors(int line_size, t_matrix *mat, char **line, int i);
+int			put_in_tab(int nb, int size_all, t_matrix *mat, t_list *track);
 t_matrix	*creat_table(char *file, int *size);
 void		print_tab_int(int hi, int wi, int **tab);
 void		print_matr_double_z(t_matrix *mat);
 void		print_matr_double_new_x_y(t_matrix *mat);
 void		print_tab_double(int hi, int wi, double **tab);
 void		free_close(t_matrix *mat);
+int			create_rgb(int r, int g, int b);
+t_bounds	mat_maxs(t_matrix *mat);
+t_bounds	mat_mins(t_matrix *mat);
+double		cal(t_matrix *mat, double z);
+
+
 
 /*
 		hexa conversion
@@ -139,6 +155,8 @@ void		draw_horizontal_line(int x1, int y, int x2, t_data img, double color);
 void		set_translations(t_tran *t);
 void	ft_bresenhams(t_matrix *mat, t_point p1, t_point p2, t_data *img, double color);
 void        plot_line(int x0, int y0, int x1, int y1, t_data *img, int color);
+void	ft_draw_line(t_matrix *mat, int i, int j, int direct, t_data *data);
+
 
 #endif
 

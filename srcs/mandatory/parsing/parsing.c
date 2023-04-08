@@ -6,7 +6,7 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 17:42:38 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/03/19 16:00:43 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/04/08 16:55:07 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,35 +102,32 @@ t_list	*read_map(char *file, int *nb)
 
 
 
-int	put_in_tab(int nb, int size_all, t_point **tab, t_list *track)
+int	put_in_tab(int nb, int size_all, t_matrix *mat, t_list *track)
 {
 	char	**line;
 	int		line_size;
-	//t_list	**lst;
 	int		i;
 
 	i = 0;
-	//lst = &track;
 	while (nb-- > 0)
 	{
 		line = ft_split(track->content, ' ');
 		line_size = ft_strlenn(line) - 1;
-		//printf("line size %d\n", line_size);
 		size_all += line_size;
 		track = track->next;
-		tab[i] = malloc (sizeof(t_point) * line_size);
-		if (!tab[i])
+		mat->matrix_points[i] = malloc (sizeof(t_point) * line_size);
+		if (!mat->matrix_points[i])
 			return (0);
-		get_cords_colors(line_size, tab, line, i);
+		get_cords_colors(line_size, mat, line, i);
 		free_line(line);
 		i++;
 	}
-	//free(lst);
 	return (line_size);
 }
 
 /*
-		this fonction reades the file and store a linked list of linesin strings (chaine)
+		this fonction reades the file and store a
+		 linked list of linesin strings (chaine)
 		create a matrix 
 		store in mat->mat_point a 2D array of points
 		return 
@@ -154,9 +151,9 @@ t_matrix	*creat_table(char *file, int *size)
 	if (!(mat->matrix_points))
 		return (free_list(&chaine), free(mat), NULL);
 	track = chaine;
-	*size = put_in_tab(nb, size_all, mat->matrix_points, track);
+	*size = put_in_tab(nb, size_all, mat, track);
 	if (*size == 0)
-		return (free_matrix (mat),free_list(&chaine), NULL);
+		return (free_matrix (mat), free_list(&chaine), NULL);
 	free_list(&chaine);
 	printll(chaine);
 	mat->width = *size;
