@@ -6,17 +6,17 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 12:10:19 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/04/08 17:59:22 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/05/24 18:30:25 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
+#include <stdio.h>
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*pixel;
 	int		i;
-
+	
 	if (x < 0 || x > WINDOW_WIDTH || y < 0 || y > WINDOW_HEIGHT)
 		return ;
 	i = data->bpp - 8;
@@ -31,16 +31,12 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	}
 }
 
-
-int min_and_val(int nb1, int nb2)
+int	min_and_val(int nb1, int nb2)
 {
 	if (nb1 < nb2)
 		return (1);
 	return (-1);
 }
-
-// double	cal2()
-// {}
 
 void	plot_line(int x0, int y0, int x1, int y1, t_data *img, int color)
 {
@@ -156,7 +152,7 @@ void	bresenhams(t_data *data, t_point p1, t_point p2, t_matrix *mat)
 	ft_set_colors(mat, &p1, &p2);
 	while ((int)p.new_x != (int)p2.new_x || (int)p.new_y != (int)p2.new_y)
 	{
-		printf("%lf and %lf \n",p.new_y, p2.new_y);
+		// printf("%lf and %lf \n",p.new_y, p2.new_y);
 		ft_pixel(data, p.new_x, p.new_y, ft_color(p1, p2, p));
 		e = 2 * err;
 		if (e > -1 * ft_abs(p2.new_y, p1.new_y))

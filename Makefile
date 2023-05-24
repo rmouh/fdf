@@ -6,7 +6,7 @@
 #    By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/24 18:05:45 by rmouhoub          #+#    #+#              #
-#    Updated: 2023/04/08 16:23:24 by rmouhoub         ###   ########.fr        #
+#    Updated: 2023/05/24 19:11:54 by rmouhoub         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ all				:	${NAME}
 $(NAME): $(OBJS)
 	make -C libft
 	mv libft/libft.a .
-	$(CC) $(OBJS) $(CFLAGS) mlx/libmlx.a mlx/libmlx_Linux.a -L. -lXext -L. -lX11 -lm ${LIBFT}  -o $(NAME)
+	$(CC) -g3 $(OBJS) $(CFLAGS) mlx/libmlx.a mlx/libmlx_Linux.a -L. -lXext -L. -lX11 -lm ${LIBFT}  -o $(NAME)
 	@echo "\033[34;5mfdf\033[0m"
 
 $(DIR_OBJS)/%.o: $(DIR_SRCS)/%.c | $(DIR_OBJS)

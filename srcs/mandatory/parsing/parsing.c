@@ -6,7 +6,7 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 17:42:38 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/04/08 16:55:07 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/05/24 19:46:49 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,8 @@ t_matrix	*creat_table(char *file, int *size)
 	mat = malloc (sizeof(t_matrix));
 	if (!mat)
 		free_list(&chaine);
+	mat->width = 0;
+	mat->height = 0;
 	mat->matrix_points = malloc(sizeof(t_point *) * nb);
 	if (!(mat->matrix_points))
 		return (free_list(&chaine), free(mat), NULL);
@@ -154,10 +156,11 @@ t_matrix	*creat_table(char *file, int *size)
 	*size = put_in_tab(nb, size_all, mat, track);
 	if (*size == 0)
 		return (free_matrix (mat), free_list(&chaine), NULL);
-	free_list(&chaine);
-	printll(chaine);
 	mat->width = *size;
 	mat->height = nb;
+	free_list(&chaine);
+	printll(chaine);
+	
 	return (mat);
 }
 

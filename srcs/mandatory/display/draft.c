@@ -7,9 +7,7 @@ void	ft_bresenhams(t_matrix *mat, t_point p1, t_point p2, t_data *img, double co
 	p.new_x = p1.new_x;
 	p.new_y = p1.new_y;
 	err = ft_abs(p2.new_x, p1.new_x) - ft_abs(p2.new_y, p1.new_y);
-	//ft_set_colors(data, &p1, &p2);
 	while (p.new_x != p2.new_x || p.new_x != p2.new_x){
-	printf("herer\n");
 		my_mlx_pixel_put(img, p.new_x, p.new_y, 0xf098876);
 		e = 2 * err;
 		if (e > -1 * ft_abs(p2.new_y, p1.new_y))
@@ -24,13 +22,6 @@ void	ft_bresenhams(t_matrix *mat, t_point p1, t_point p2, t_data *img, double co
 		}
 	}
 	my_mlx_pixel_put(img, p.new_x, p.new_y, color);
-	// for (int i = 0; i  < 200 ; i++)
-	// {
-		
-	// 	my_mlx_pixel_put(img, 300, i, color);
-
-	// }
-
 }
 
 void	draw_vertical_line(int x, int y1, int y2, t_data img, double color)
@@ -440,4 +431,96 @@ void	ft_drawline(t_matrix *mat, int i, int j, int direct, t_data *img, double co
 //     if (e2 <= dx) { err += dx; y0 += sy; } /* e_xy+e_y < 0 */
 //   }
 // 	//ft_printf("laaaaaa\n");
+// }
+
+ //void drawline(t_point *p1, t_point *p2, t_data img, double color, void	*mlx, void	*mlx_win)
+// {
+// 	// double	dx;
+// 	// double	p;
+// 	// double	dy;
+// 	// double	x;
+// 	// double	y;
+
+// 	// dx = p2->new_x - p1->new_x;
+// 	// dy = p2->new_y - p1->new_y;
+// 	// x = p1->new_x;
+// 	// y = p1->new_y;
+// 	// p = 2 * dy - dx;
+// 	// while (x < p2->new_x)
+// 	// {
+// 	// 	if (p >= 0)
+// 	// 	{
+// 	// 		my_mlx_pixel_put(&img, x + 100, y + 200, color);
+// 	// 		mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
+// 	// //putpixel(x,y,7);
+// 	// 		y = y + 1;
+// 	// 		p = p + 2 * dy - 2 * dx;
+// 	// 	}
+// 	// 	else
+// 	// 	{
+// 	// 		my_mlx_pixel_put(&img, x + 300, y + 800, color);
+// 	// 		mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
+// 	// 		p = p + 2 * dy;
+// 	// 	}
+// 	// 	x = x + 1;
+// 	// }
+	
+// 	int x0,y0, x1,y1;
+// 	x0 = p1->new_x;
+// 	y0 = p1->new_y;
+// 	x1 = p2->new_x;
+// 	y1 = p2->new_y;
+//   int dx =  abs (x1 - x0), sx = x0 < x1 ? 1 : -1;
+//   int dy = -abs (y1 - y0), sy = y0 < y1 ? 1 : -1; 
+//   int err = dx + dy, e2; /* error value e_xy */
+ 
+//   for (;;){  /* loop */
+//    // setPixel (x0,y0);
+// 	my_mlx_pixel_put(&img, x0, y0 , color);
+// 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
+//     if (x0 == x1 && y0 == y1) break;
+//     e2 = 2 * err;
+//     if (e2 >= dy) { err += dy; x0 += sx; } /* e_xy+e_x > 0 */
+//     if (e2 <= dx) { err += dx; y0 += sy; } /* e_xy+e_y < 0 */
+//   }
+// }
+
+
+
+
+
+// int	the_formula(t_matrix *matrix, double alpha, double beta, t_tran tr)
+// {
+// 	t_tab		*res;
+// 	int			i;
+// 	int			j;
+// 	t_tab		*tab1;
+// 	t_tab		*tab2;
+// 	t_tab 		*t;
+// 	t_point		*p;
+// 	t_camera	*cam;
+
+// 	i = 0;
+// 	tab1 = NULL;
+// 	tab2 = NULL;
+// 	cam = initialize_cam(alpha, beta);
+// 	res = first_mult(cam, tab1, tab2);
+// 	free(cam);
+// 	if (!res)
+// 		return (free(cam), -1);
+// 	printf(" hi %d  w %d\n", matrix->height, matrix->width);
+// 	while (i < matrix->height)
+// 	{
+// 		j = 0;
+// 		while (j < matrix->width)
+// 		{
+// 			p = &(matrix->matrix_points[i][j]);
+// 			t = second_mult(res->tab, p);
+// 			third_mult(p, t, tr);
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// 	free_tab_int(res);
+// 	return (1);
 // }

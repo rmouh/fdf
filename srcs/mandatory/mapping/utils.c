@@ -6,7 +6,7 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 14:59:25 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/04/01 17:34:19 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/05/24 19:13:16 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,15 +78,15 @@ void	third_mult(t_point *point, t_tab *vect, t_tran t)
 	tab1->tab[1][1] = 1;
 	res = multiplicate(tab1->tab, vect->tab, 3, 1, 3);
 	free_tab_int(tab1);
-	(*point).new_x = res->tab[0][0] + WINDOW_WIDTH / 2;
-	(*point).new_y = res->tab[1][0] + 700;
+	(*point).new_x = res->tab[0][0] + 500;
+	(*point).new_y = res->tab[1][0] +500;
 	free_tab_int(res);
 	free_tab_int(vect);
 }
 
 void	free_close(t_matrix *mat)
 {
-	mlx_destroy_image(mat->mlx, mat->img);
+	mlx_destroy_image(mat->mlx, mat->imgg.img);
 	mlx_clear_window(mat->mlx, mat->mlx_win);
 	mlx_destroy_window(mat->mlx, mat->mlx_win);
 	mlx_destroy_display(mat->mlx);

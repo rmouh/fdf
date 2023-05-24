@@ -6,7 +6,7 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:53:34 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/04/08 17:44:35 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/05/24 18:13:21 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # endif
 
 typedef struct s_data {
-	// void	*img;
+	void	*img;
 	char	*addr;
 	int		bpp;
 	int		len;
@@ -68,7 +68,8 @@ typedef struct s_matrix{
 	int		height;
 	void	*mlx;
 	void	*mlx_win;
-	void	*img;
+	// void	*img;
+	t_data	imgg;
 }				t_matrix;
 
 typedef struct s_tab{
@@ -76,6 +77,19 @@ typedef struct s_tab{
 	int		height;
 	int		width;
 }				t_tab;
+
+typedef struct s_trans{
+	double		tr_x;
+	double		tr_y;
+}				t_trans;
+
+typedef struct s_form{
+	t_tab		*tab1;
+	t_tab		*tab2;
+	t_tab		*t;
+	t_point		*p;
+	t_camera	*cam;
+}				t_form;
 
 typedef struct s_coor
 {
@@ -146,7 +160,7 @@ t_tab		*multiplicate(double **tab1, double **tab2, int n, int q, int m);
 							*/
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int			absolut (double nb);
-void		draw_7(t_matrix *mat, int i, int j, t_data *img, double color);
+void		draw_7(t_matrix *mat, int i, int j);
 int			min(double nb1, double nb2);
 void		find(t_matrix *mat, t_tran *tr);
 void	ft_drawline(t_matrix *mat, int i, int j, int direct, t_data *img, double color);
