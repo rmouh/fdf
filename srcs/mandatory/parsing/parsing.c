@@ -6,12 +6,11 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 17:42:38 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/05/24 19:46:49 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/05/26 14:50:44 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-//https://cdn.intra.42.fr/users/3043355b639371ff9f7b9eb3f805feb4/rmouhoub.jpg
 
 int	is_upper(char c)
 {
@@ -159,8 +158,7 @@ t_matrix	*creat_table(char *file, int *size)
 	mat->width = *size;
 	mat->height = nb;
 	free_list(&chaine);
-	printll(chaine);
-	
+	// printll(chaine);
 	return (mat);
 }
 

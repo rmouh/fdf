@@ -6,17 +6,18 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 12:10:19 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/05/24 18:30:25 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/05/26 18:00:08 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdio.h>
+
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*pixel;
 	int		i;
-	
+
 	if (x < 0 || x > WINDOW_WIDTH || y < 0 || y > WINDOW_HEIGHT)
 		return ;
 	i = data->bpp - 8;
@@ -68,31 +69,6 @@ void	plot_line(int x0, int y0, int x1, int y1, t_data *img, int color)
 	}
 }
 
-void	ft_drawline(t_matrix *mat, int i, int j, int direct, t_data *img, double color)
-{
-	t_point	p1;
-	t_point	p2;
-
-	p1.x = i;
-	p1.y = j;
-	p1.new_x = mat->matrix_points[i][j].new_x;
-	p1.new_y = mat->matrix_points[i][j].new_y;
-	if (direct == 1)
-	{
-		p2.x = i;
-		p2.y = j + 1;
-		p2.new_x = mat->matrix_points[i][j + 1].new_x;
-		p2.new_y = mat->matrix_points[i][j + 1].new_y;
-	}
-	else
-	{
-		p2.x = i + 1;
-		p2.y = j;
-		p2.new_x = mat->matrix_points[i + 1][j].new_x;
-		p2.new_y = mat->matrix_points[i + 1][j].new_y;
-	}
-	plot_line(p1.new_x, p1.new_y, p2.new_x, p2.new_y, img, color);
-}
 int	ft_abs(int a, int b)
 {
 	if (a - b < 0)
@@ -128,6 +104,7 @@ int	ft_color(t_point p1, t_point p2, t_point p)
 	color = (p2.color - p1.color) * ratio + p1.color;
 	return (color);
 }
+
 void	ft_set_colors_sep(t_matrix *data, t_point *p1)
 {
 	p1->color = data->matrix_points[p1->x][p1->y].color;
@@ -140,7 +117,7 @@ void	ft_set_colors(t_matrix *data, t_point *p1, t_point *p2)
 	ft_set_colors_sep(data, p2);
 }
 
-void	bresenhams(t_data *data, t_point p1, t_point p2, t_matrix *mat)
+void	bresenhams(t_point p1, t_point p2, t_matrix *mat)
 {
 	t_point	p;
 	int		err;
@@ -153,7 +130,7 @@ void	bresenhams(t_data *data, t_point p1, t_point p2, t_matrix *mat)
 	while ((int)p.new_x != (int)p2.new_x || (int)p.new_y != (int)p2.new_y)
 	{
 		// printf("%lf and %lf \n",p.new_y, p2.new_y);
-		ft_pixel(data, p.new_x, p.new_y, ft_color(p1, p2, p));
+		ft_pixel(&(mat->imgg), p.new_x, p.new_y, ft_color(p1, p2, p));
 		e = 2 * err;
 		if (e > -1 * ft_abs(p2.new_y, p1.new_y))
 		{
@@ -166,34 +143,43 @@ void	bresenhams(t_data *data, t_point p1, t_point p2, t_matrix *mat)
 			p.new_y += ft_slope(p1.new_y, p2.new_y);
 		}
 	}
-	ft_pixel(data, p.new_x, p.new_y, ft_color(p1, p2, p));
+	ft_pixel(&(mat->imgg), p.new_x, p.new_y, ft_color(p1, p2, p));
 }
 
-void	ft_draw_line(t_matrix *mat, int i, int j, int direct, t_data *data)
+void	ft_draw_line_vertical(t_matrix *mat, int i, int j, t_trans p)
 {
 	t_point	p1;
 	t_point	p2;
 
 	p1.x = i;
 	p1.y = j;
-	p1.new_x = mat->matrix_points[i][j].new_x;
-	p1.new_y = mat->matrix_points[i][j].new_y;
-	if (direct == 1)
-	{
-		p2.x = i;
-		p2.y = j + 1;
-		p2.new_x = mat->matrix_points[i][j + 1].new_x;
-		p2.new_y = mat->matrix_points[i][j + 1].new_y;
-	}
-	else
-	{
-		p2.x = i + 1;
-		p2.y = j;
-		p2.new_x = mat->matrix_points[i + 1][j].new_x;
-		p2.new_y = mat->matrix_points[i + 1][j].new_y;
-	}
-	bresenhams(data, p1, p2, mat);
+	p1.new_x = mat->matrix_points[i][j].new_x - 00+ 1920 / 2 + p.tr_x;
+	p1.new_y = mat->matrix_points[i][j].new_y - 00+ 1080 / 2 + p.tr_y;
+	p2.x = i + 1;
+	p2.y = j;
+	p2.new_x = mat->matrix_points[i + 1][j].new_x- 00 + 1920 / 2 + p.tr_x;
+	p2.new_y = mat->matrix_points[i + 1][j].new_y- 00+ 1080 / 2 + p.tr_y;
+
+	bresenhams(p1, p2, mat);
 }
+
+void	ft_draw_line_horizental(t_matrix *mat, int i, int j, t_trans p)//1
+{
+	t_point	p1;
+	t_point	p2;
+
+	p1.x = i;
+	p1.y = j;
+	p1.new_x = mat->matrix_points[i][j].new_x +1920 / 2 + p.tr_x;
+	p1.new_y = mat->matrix_points[i][j].new_y +1080/2 + p.tr_y;
+	p2.x = i;
+	p2.y = j + 1;
+	p2.new_x = mat->matrix_points[i][j + 1].new_x- 00+ 1920 / 2 + p.tr_x;
+	p2.new_y = mat->matrix_points[i][j + 1].new_y- 00+ 1080 / 2 +  p.tr_y;
+
+	bresenhams(p1, p2, mat);
+}
+
 
 /*
 	This algo uses Bresenham's algorithm

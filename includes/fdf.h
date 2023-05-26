@@ -6,7 +6,7 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:53:34 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/05/24 18:13:21 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/05/26 15:01:45 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,17 +160,15 @@ t_tab		*multiplicate(double **tab1, double **tab2, int n, int q, int m);
 							*/
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int			absolut (double nb);
-void		draw_7(t_matrix *mat, int i, int j);
+void		draw_7(t_matrix *mat, int i, int j, t_trans p);
 int			min(double nb1, double nb2);
 void		find(t_matrix *mat, t_tran *tr);
-void	ft_drawline(t_matrix *mat, int i, int j, int direct, t_data *img, double color);
-void		draw_vertical_line(int x, int y1, int y2, t_data img, double color);
-void		draw_horizontal_line(int x1, int y, int x2, t_data img, double color);
+void		ft_draw_line_vertical(t_matrix *mat, int i, int j, t_trans p);
+void		ft_draw_line_horizental(t_matrix *mat, int i, int j, t_trans p);
 void		set_translations(t_tran *t);
-void	ft_bresenhams(t_matrix *mat, t_point p1, t_point p2, t_data *img, double color);
+void		bresenhams(t_point p1, t_point p2, t_matrix *mat);
 void        plot_line(int x0, int y0, int x1, int y1, t_data *img, int color);
-void	ft_draw_line(t_matrix *mat, int i, int j, int direct, t_data *data);
-
+void		ft_draw_line(t_matrix *mat, int i, int j, int direct);
 
 #endif
 
