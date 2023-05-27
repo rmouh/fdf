@@ -39,32 +39,32 @@ int	min_and_val(int nb1, int nb2)
 	return (-1);
 }
 
-void	plot_line(int x0, int y0, int x1, int y1, t_data *img, int color)
+void	plot_line(t_point p0, t_point p1, t_data *img, int color)
 {
 	t_coor	coor;
 	int		err;
 	int		res;
 
-	coor.dx = abs (x1 - x0);
-	coor.sx = min_and_val(x0, x1);
-	coor.dy = -abs (y1 - y0);
-	coor.sy = min_and_val(y0, y1);
+	coor.dx = abs (p1.x - p0.x);
+	coor.sx = min_and_val(p0.x, p1.x);
+	coor.dy = -abs (p1.y - p0.y);
+	coor.sy = min_and_val(p0.y, p1.y);
 	err = coor.dx + coor.dy;
 	while (1)
 	{
-		my_mlx_pixel_put(img, x0, y0, color);
-		if (x0 == x1 && y0 == y1)
+		my_mlx_pixel_put(img, p0.x, p0.y, color);
+		if (p0.x == p1.x && p0.y == p1.y)
 			break ;
 		coor.e2 = 2 * err;
 		if (coor.e2 >= coor.dy)
 		{
 			err += coor.dy;
-			x0 += coor.sx;
+			p0.x += coor.sx;
 		}
 		if (coor.e2 <= coor.dx)
 		{
 			err += coor.dx;
-			y0 += coor.sy;
+			p0.y += coor.sy;
 		}
 	}
 }
@@ -129,7 +129,6 @@ void	bresenhams(t_point p1, t_point p2, t_matrix *mat)
 	ft_set_colors(mat, &p1, &p2);
 	while ((int)p.new_x != (int)p2.new_x || (int)p.new_y != (int)p2.new_y)
 	{
-		// printf("%lf and %lf \n",p.new_y, p2.new_y);
 		ft_pixel(&(mat->imgg), p.new_x, p.new_y, ft_color(p1, p2, p));
 		e = 2 * err;
 		if (e > -1 * ft_abs(p2.new_y, p1.new_y))
@@ -153,12 +152,12 @@ void	ft_draw_line_vertical(t_matrix *mat, int i, int j, t_trans p)
 
 	p1.x = i;
 	p1.y = j;
-	p1.new_x = mat->matrix_points[i][j].new_x - 00+ 1920 / 2 + p.tr_x;
-	p1.new_y = mat->matrix_points[i][j].new_y - 00+ 1080 / 2 + p.tr_y;
+	p1.new_x = mat->matrix_points[i][j].new_x + 1920 / 2 - p.tr_x;
+	p1.new_y = mat->matrix_points[i][j].new_y + 1080 / 2 - p.tr_y;
 	p2.x = i + 1;
 	p2.y = j;
-	p2.new_x = mat->matrix_points[i + 1][j].new_x- 00 + 1920 / 2 + p.tr_x;
-	p2.new_y = mat->matrix_points[i + 1][j].new_y- 00+ 1080 / 2 + p.tr_y;
+	p2.new_x = mat->matrix_points[i + 1][j].new_x + 1920 / 2 - p.tr_x;
+	p2.new_y = mat->matrix_points[i + 1][j].new_y + 1080 / 2 - p.tr_y;
 
 	bresenhams(p1, p2, mat);
 }
@@ -170,12 +169,12 @@ void	ft_draw_line_horizental(t_matrix *mat, int i, int j, t_trans p)//1
 
 	p1.x = i;
 	p1.y = j;
-	p1.new_x = mat->matrix_points[i][j].new_x +1920 / 2 + p.tr_x;
-	p1.new_y = mat->matrix_points[i][j].new_y +1080/2 + p.tr_y;
+	p1.new_x = mat->matrix_points[i][j].new_x +1920 / 2 - p.tr_x;
+	p1.new_y = mat->matrix_points[i][j].new_y +1080/2 - p.tr_y;
 	p2.x = i;
 	p2.y = j + 1;
-	p2.new_x = mat->matrix_points[i][j + 1].new_x- 00+ 1920 / 2 + p.tr_x;
-	p2.new_y = mat->matrix_points[i][j + 1].new_y- 00+ 1080 / 2 +  p.tr_y;
+	p2.new_x = mat->matrix_points[i][j + 1].new_x + 1920 / 2 - p.tr_x;
+	p2.new_y = mat->matrix_points[i][j + 1].new_y + 1080 / 2 -  p.tr_y;
 
 	bresenhams(p1, p2, mat);
 }

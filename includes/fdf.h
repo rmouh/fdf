@@ -146,28 +146,32 @@ t_tab		*multiplicate(double **tab1, double **tab2, int n, int q, int m);
 t_camera	*initialize_cam(double alpha, double beta);
 
 		/* multiplications */
-
+void		aux(t_matrix *matrix, t_tab *res, t_form	*x, t_tran tr);
 t_tab		*first_mult(t_camera *cam, t_tab*tab1, t_tab *tab2);
 t_tab		*second_mult(double **tab, t_point *point);
 void		third_mult(t_point *point, t_tab *vect, t_tran t);
 int			the_formula(t_matrix *matrix, double alpha, double beta, t_tran tr);
 t_tab		*multiplicate(double **tab1, double **tab2, int n, int q, int m);
-
+void		free_close(t_matrix *mat);
 
 
 /*			
 			display
 							*/
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int			min_and_val(int nb1, int nb2);
+int			ft_slope(int a, int b);
 int			absolut (double nb);
+int			ft_color(t_point p1, t_point p2, t_point p);
+void		ft_set_colors_sep(t_matrix *data, t_point *p1);
+void		ft_set_colors(t_matrix *data, t_point *p1, t_point *p2);
 void		draw_7(t_matrix *mat, int i, int j, t_trans p);
 int			min(double nb1, double nb2);
 void		find(t_matrix *mat, t_tran *tr);
 void		ft_draw_line_vertical(t_matrix *mat, int i, int j, t_trans p);
 void		ft_draw_line_horizental(t_matrix *mat, int i, int j, t_trans p);
-void		set_translations(t_tran *t);
 void		bresenhams(t_point p1, t_point p2, t_matrix *mat);
-void        plot_line(int x0, int y0, int x1, int y1, t_data *img, int color);
+void		plot_line(t_point p0, t_point p1, t_data *img, int color);
 void		ft_draw_line(t_matrix *mat, int i, int j, int direct);
 
 #endif
