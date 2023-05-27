@@ -6,7 +6,7 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 14:59:25 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/05/26 17:58:17 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/05/27 14:40:53 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_tab	*second_mult(double **tab, t_point *point)
 	vect = malloc_matric_n(3, 1, vect);
 	vect->tab[0][0] = point->x;
 	vect->tab[1][0] = point->y;
-	vect->tab[2][0] = point->z;
+	vect->tab[2][0] = point->z * 5;
 	if (!vect)
 		return (NULL);
 	res = multiplicate(tab, vect->tab, 3, 1, 3);
@@ -78,8 +78,8 @@ void	third_mult(t_point *point, t_tab *vect, t_tran t)
 	tab1->tab[1][1] = 1;
 	res = multiplicate(tab1->tab, vect->tab, 3, 1, 3);
 	free_tab_int(tab1);
-	(*point).new_x = res->tab[0][0] ;
-	(*point).new_y = res->tab[1][0] ;
+	(*point).new_x = res->tab[0][0];
+	(*point).new_y = res->tab[1][0];
 	free_tab_int(res);
 	free_tab_int(vect);
 }

@@ -6,16 +6,11 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 17:42:38 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/05/26 14:50:44 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/05/27 14:27:17 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-int	is_upper(char c)
-{
-	return ((c >= 'A' && c <= 'Z'));
-}
 
 double	conversion(char *p, int sign, int base)
 {

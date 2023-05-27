@@ -6,7 +6,7 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 16:53:34 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/05/26 15:01:45 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/05/27 14:32:36 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 # include <math.h> 
 # include "libft.h"
 # ifndef WINDOW_HEIGHT
-#  define WINDOW_HEIGHT 1080
+#  define WINDOW_HEIGHT 1200
 # endif
 # ifndef WINDOW_WIDTH
-#  define WINDOW_WIDTH 1920
+#  define WINDOW_WIDTH 2000
 # endif
 
 typedef struct s_data {
@@ -173,6 +173,9 @@ void		ft_draw_line_horizental(t_matrix *mat, int i, int j, t_trans p);
 void		bresenhams(t_point p1, t_point p2, t_matrix *mat);
 void		plot_line(t_point p0, t_point p1, t_data *img, int color);
 void		ft_draw_line(t_matrix *mat, int i, int j, int direct);
+t_trans		translate(t_point	**mat, int height, int width);
+void		ft_pixel(t_data *data, int x, int y, int color);
+int			ft_abs(int a, int b);
 
 #endif
 

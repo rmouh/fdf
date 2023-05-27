@@ -6,7 +6,7 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:25:20 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/05/24 14:59:49 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/05/27 14:28:17 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,9 @@ void	get_cords_colors(int line_size, t_matrix *mat, char **line, int i)
 		(*point).y = i * 40;
 		if (ft_strcontain(line[j], ","))
 		{
-			// (*point).color = create_rgb(255, 0, 0);
 			(*point).color = create_rgb(cal(mat, (*point).z), 255, 255);
-
 		}
 		else
-			// (*point).color = create_rgb(255, 0, 0);
 			(*point).color = create_rgb(cal(mat, (*point).z), 255, 255);
 		j++;
 	}
@@ -87,8 +84,8 @@ void	print_matr_double_z(t_matrix *mat)
 		while (j < mat->width)
 		{
 			printf ("%d  ", mat->matrix_points[i][j].z);
-			if (mat->matrix_points[i][j].color != 0)
-				printf ("->{%lf}  ", mat->matrix_points[i][j].color);
+			// if (mat->matrix_points[i][j].color != 0)
+			// 	printf ("->{%lf}  ", mat->matrix_points[i][j].color);
 			j++;
 		}
 		i++;

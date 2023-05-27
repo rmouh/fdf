@@ -6,7 +6,7 @@
 /*   By: rmouhoub <rmouhoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 16:13:20 by rmouhoub          #+#    #+#             */
-/*   Updated: 2023/05/24 19:42:54 by rmouhoub         ###   ########.fr       */
+/*   Updated: 2023/05/27 14:27:24 by rmouhoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,10 @@ double	cal(t_matrix *mat, double z)
 	b_max = mat_maxs(mat);
 	b_min = mat_mins(mat);
 	return (255 * ((z - b_min.z_min) / (b_max.z_max - b_min.z_min)));
+}
+
+int	is_upper(char c)
+{
+	return ((c >= 'A' && c <= 'Z'));
 }
 
